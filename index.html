@@ -9,8 +9,9 @@
 
     <!--Title --> 
 <header>
+    <img src="images/blacksheep.jpg">
 
-    <h1> TWEET TWEET </h1> 
+    <h1> BAHAHAHA </h1> 
 
     <h4> Tweet Sheeps </h3> 
 
@@ -25,6 +26,8 @@
 
       $(document).ready(function(){
 
+        var $body = $('body');
+
       //User List 
       var $userList = $('.users');
         for (var i = 0; i < users.length; i++) {
@@ -34,9 +37,7 @@
         }
 
       //homepage tweets
-      var $body = $('body');
-
-      function homeTweet() {
+     function homeTweet() {
         var index = streams.home.length - 1;
           while(index >= 0){
           var tweet = streams.home[index];
@@ -56,7 +57,11 @@
       })
 
       //click on user name 
-      
+
+      //colors 
+      $('body').css('background-color', 'skyblue')
+
+
 
       });
 
