@@ -7,9 +7,11 @@
   <title> HR Twittler Clone </title>
   <body>
 
-    <!--Title --> 
+                            <!--Title --> 
 <header>
-    <img src="images/blacksheep.jpg">
+  <div style="text-align: center;">
+    <img src="images/topsheep.jpg">
+  </div>
 
     <h1> BAHAHAHA </h1> 
 
@@ -17,7 +19,11 @@
 
     <ul class="users"></ul> 
 
-    <button class='refresh'> REFRESH SHEEP </button> 
+    <button class="home"> HOME SHEEP </button> 
+
+    <button class='new'> NEW SHEEP </button> 
+
+    <ul class="tweetRefresh"></ul> 
 
   </header> 
 
@@ -26,9 +32,10 @@
 
       $(document).ready(function(){
 
-        var $body = $('body');
+        var $tweetRefresh = $('.tweetRefresh');
 
-      //User List 
+
+                            //User List 
       var $userList = $('.users');
         for (var i = 0; i < users.length; i++) {
           var $sheepUser = $('<button class="sheepUser"></button>');
@@ -43,20 +50,42 @@
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message + ' (' + tweet.created_at + ')');
-          $tweet.appendTo($body);
+          $tweet.appendTo($tweetRefresh);
           index -= 1;
         }
       }
       homeTweet(); 
 
-      //Event Listeners 
 
-      //click on refresh 
-      $('.refresh').on('click', function (){
+                            //Event Listeners 
+
+      //click on new 
+      $('.new').on('click', function (){
         homeTweet(); 
       })
 
       //click on user name 
+      $('.sheepUser').on('click', function () {
+        $tweetRefresh.html('');
+        var name =  $(this).text(); 
+        for (var i = 0; i < streams.home.length; i++) {
+          var tweet = streams.home[i];
+          if (tweet.user === name) {
+            var $tweet = $('<div></div>');
+            $tweet.text('@' + tweet.user + ': ' + tweet.message + ' (' + tweet.created_at + ')');
+            $tweet.appendTo($tweetRefresh);
+          }
+        }
+      })
+
+      //click on home 
+      $('.home').on('click', function() {
+        $tweetRefresh.html('');
+        homeTweet();
+      })
+
+
+                            //css
 
       //colors 
       $('body').css('background-color', 'skyblue')
