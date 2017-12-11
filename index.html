@@ -8,6 +8,7 @@
   <body>
 
     <!--Title --> 
+<header>
 
     <h1> TWEET TWEET </h1> 
 
@@ -17,7 +18,7 @@
 
     <button class='refresh'> REFRESH SHEEP </button> 
 
-  
+  </header> 
 
 
     <script>
@@ -27,9 +28,9 @@
       //User List 
       var $userList = $('.users');
         for (var i = 0; i < users.length; i++) {
-          var $user = $('<button class="user"></button>');
-          $user.text(users[i]);
-          $userList.prepend($user);
+          var $sheepUser = $('<button class="sheepUser"></button>');
+          $sheepUser.text(users[i]);
+          $userList.before($sheepUser);
         }
 
       //homepage tweets
@@ -40,7 +41,7 @@
           while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' (' + tweet.created_at + ')');
           $tweet.appendTo($body);
           index -= 1;
         }
@@ -48,9 +49,14 @@
       homeTweet(); 
 
       //Event Listeners 
+
+      //click on refresh 
       $('.refresh').on('click', function (){
         homeTweet(); 
       })
+
+      //click on user name 
+      
 
       });
 
